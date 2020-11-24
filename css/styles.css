@@ -461,6 +461,13 @@ header {
   align-items: center;
   max-width: 1024px;
 }
+header h1 {
+  font-size: 1.75em;
+}
+
+.input {
+  width: 75%;
+}
 
 /* ============================================= */
 /*              Media Queries                    */
