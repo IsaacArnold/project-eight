@@ -406,7 +406,7 @@ a {
 .grid-container {
   display: grid;
   max-width: 1024px;
-  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: repeat(auto-fit, 150px);
   grid-gap: 20px;
   justify-content: center;
