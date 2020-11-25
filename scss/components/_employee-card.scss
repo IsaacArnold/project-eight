@@ -9,9 +9,13 @@
     align-items: center;
     height: 150px;
     background-color: lightgray;
-    border: 1px solid red;
     border-radius: 4px;
     word-break: break-all;
+    cursor: pointer;
+    transition: all .5s;
+    &:hover {
+        box-shadow: 0px 10px 18px -2px #727272;
+    }
 }
 
 .profile-img-small {
