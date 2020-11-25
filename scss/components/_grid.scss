@@ -5,9 +5,9 @@
 .grid-container {
     display: grid;
     max-width: 1024px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
     grid-template-rows: repeat(auto-fit, 150px);
-    grid-gap: 20px;
+    grid-gap: 15px;
     justify-content: center;
     margin: auto;
 }

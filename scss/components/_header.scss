@@ -4,11 +4,22 @@
 
 header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
     max-width: 1024px;
     h1 {
         font-size: 1.75em;
+    }
+    input {
+        margin-bottom: 15px;
+    }
+    @media (min-width: 1024px) {
+        flex-direction: row;
+        input {
+            margin-bottom: 0;
+            width: 30%;
+        }
     }
 }

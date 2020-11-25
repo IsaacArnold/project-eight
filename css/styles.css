@@ -406,9 +406,9 @@ a {
 .grid-container {
   display: grid;
   max-width: 1024px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   grid-template-rows: repeat(auto-fit, 150px);
-  grid-gap: 20px;
+  grid-gap: 15px;
   justify-content: center;
   margin: auto;
 }
@@ -419,36 +419,44 @@ a {
 .card {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
   height: 150px;
   background-color: lightgray;
   border: 1px solid red;
   border-radius: 4px;
+  word-break: break-all;
 }
 
 .profile-img-small {
   border-radius: 50%;
   margin-left: 15px;
+  height: 90px;
 }
 
 .text-container {
-  margin-left: 15px;
+  margin-left: 10px;
   margin-right: auto;
+  padding-right: 10px;
 }
 .text-container .name {
-  font-size: 1.15em;
+  font-size: 0.9em;
   margin-bottom: 5px;
 }
 .text-container .email {
-  font-size: 0.9em;
+  font-size: 0.75em;
   margin-top: 0;
   margin-bottom: 5px;
 }
 .text-container .city {
-  font-size: 0.9em;
+  font-size: 0.75em;
   margin-top: 0;
+}
+@media (min-width: 768px) {
+  .text-container .email,
+.text-container .city {
+    font-size: 0.8em;
+  }
 }
 
 /* ============================================= */
@@ -456,13 +464,26 @@ a {
 /* ============================================= */
 header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  text-align: center;
   max-width: 1024px;
 }
 header h1 {
   font-size: 1.75em;
+}
+header input {
+  margin-bottom: 15px;
+}
+@media (min-width: 1024px) {
+  header {
+    flex-direction: row;
+  }
+  header input {
+    margin-bottom: 0;
+    width: 30%;
+  }
 }
 
 /* ============================================= */
