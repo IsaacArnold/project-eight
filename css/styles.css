@@ -453,7 +453,9 @@ a {
   margin-top: 0;
   margin-bottom: 5px;
 }
-.text-container .city {
+.text-container .city,
+.text-container .birthday,
+.text-container .phone {
   font-size: 0.75em;
   margin-top: 0;
 }

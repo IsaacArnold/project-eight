@@ -55,15 +55,15 @@ function displayModal(index) {
 
 
     const modalHtml = `
-        <img class='avatar' src='${picture.large}' alt='Image of ${name.first} ${name.last}'>
+        <img class='profile-img-small' src='${picture.large}' alt='Image of ${name.first} ${name.last}'>
         <div class='text-container'>
             <h2 class='name'>${name.first} ${name.last}</h2>
             <p class='email'>${email}</p>
             <p class='city'>${city}</p>
             <hr />
-            <p>${phone}</p>
-            <p class='address'>${street.name}, ${state}, ${postcode}</p>
-            <p>Birthday: ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}<p>
+            <p class='phone'>${phone}</p>
+            <p class='city'>${street.name}, ${state}, ${postcode}</p>
+            <p class='birthday'>Birthday: ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}<p>
         </div>
     `;
 
