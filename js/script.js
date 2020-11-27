@@ -92,3 +92,14 @@ modalClose.addEventListener('click', (e) => {
         overlay.classList.add('hidden');
     }
 });
+
+/* ========================================
+Search Function
+======================================== */
+
+const searchField = document.getElementById('search');
+
+searchField.addEventListener('keyup', () => {
+    const searchInput = searchField.value.toLowerCase();
+    console.log(searchInput);
+});
