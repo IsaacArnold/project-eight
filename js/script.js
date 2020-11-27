@@ -9,6 +9,7 @@ const overlay = document.querySelector('.overlay');
 const modalContainer = document.querySelector('.modal-content');
 const modalClose = document.querySelector('.modal-close');
 const card = document.getElementsByClassName('card');
+const searchField = document.querySelector('#search');
 
 /* ========================================
 Getting data from API
@@ -41,7 +42,6 @@ function displayEmployees(data) {
         `
     });
     gridContainer.innerHTML = cardHtml;
-    searchFilter();
 }
 
 /* ========================================
@@ -98,18 +98,13 @@ modalClose.addEventListener('click', (e) => {
 /* ========================================
 Search Function
 ======================================== */
-function searchFilter() {
-    const searchField = document.getElementById('search');
-    const searchInput = searchField.value.toLowerCase();
+// Idea from Ibrahima Ndaw blog: https://www.ibrahima-ndaw.com/blog/build-a-search-filter-with-javascript/
 
-    searchField.addEventListener('keyup', () => {
-        for (let i = 0; i < card.length; i++) {
-            if (card.innerText.toLowerCase().includes(searchInput)) {
-                card[i].style.display = "";
-            } else {
-                card[i].style.disaply = 'none';
-            }
-        }
-    });
+searchField.addEventListener('keyup', (e) => {
+    const input = e.target.value.toLowerCase();
+    // Filters the employees data to include only those that match the email address with the input
+    const filteredUsers = employees.filter(employee => employee.email.toLowerCase().includes(input));
 
-}
+    // Uses the displayEmployees function passing in the new filtered array
+    displayEmployees(filteredUsers);
+});
