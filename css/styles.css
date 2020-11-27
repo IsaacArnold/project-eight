@@ -526,6 +526,20 @@ header input {
   cursor: pointer;
 }
 
+.previous-arrow {
+  position: absolute;
+  left: 15px;
+  bottom: 50%;
+  cursor: pointer;
+}
+
+.next-arrow {
+  position: absolute;
+  right: 15px;
+  bottom: 50%;
+  cursor: pointer;
+}
+
 .hidden {
   display: none;
 }
