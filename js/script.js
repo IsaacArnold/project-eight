@@ -55,7 +55,7 @@ function displayModal(index) {
 
 
     const modalHtml = `
-        <img class='profile-img-small' src='${picture.large}' alt='Image of ${name.first} ${name.last}'>
+        <img class='profile-img-modal' src='${picture.large}' alt='Image of ${name.first} ${name.last}'>
         <div class='text-container'>
             <h2 class='name'>${name.first} ${name.last}</h2>
             <p class='email'>${email}</p>
