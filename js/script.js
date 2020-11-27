@@ -42,6 +42,7 @@ function displayEmployees(data) {
         `
     });
     gridContainer.innerHTML = cardHtml;
+    searchFilter();
 }
 
 /* ========================================
@@ -98,13 +99,20 @@ modalClose.addEventListener('click', (e) => {
 /* ========================================
 Search Function
 ======================================== */
-// Idea from Ibrahima Ndaw blog: https://www.ibrahima-ndaw.com/blog/build-a-search-filter-with-javascript/
-
-searchField.addEventListener('keyup', (e) => {
-    const input = e.target.value.toLowerCase();
-    // Filters the employees data to include only those that match the email address with the input
-    const filteredUsers = employees.filter(employee => employee.email.toLowerCase().includes(input));
-
-    // Uses the displayEmployees function passing in the new filtered array
-    displayEmployees(filteredUsers);
-});
+// Function idea borrowed from my project five which had inspo from from itsmeganlynn's GitHub repo: techdegree-project-5
+function searchFilter() {
+    const searchField = document.getElementById('search');
+    
+    searchField.addEventListener('keyup', () => {
+        // Putting the searchInput variable inside the event listener allows it to be updated each time the keys are pressed
+        const searchInput = searchField.value.toLowerCase();
+        for (let i = 0; i < card.length; i++) {
+            // Using .name allows the card info to be the content of the name class -> this is what is being compared to the searchInput
+            if (card[i].querySelector('.name').innerText.toLowerCase().includes(searchInput)) {
+                card[i].style.display = "";
+            } else {
+                card[i].style.display = 'none';
+            }
+        }
+    });
+}
