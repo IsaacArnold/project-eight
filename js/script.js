@@ -8,6 +8,7 @@ const gridContainer = document.querySelector('.grid-container');
 const overlay = document.querySelector('.overlay');
 const modalContainer = document.querySelector('.modal-content');
 const modalClose = document.querySelector('.modal-close');
+const card = document.getElementsByClassName('card');
 
 /* ========================================
 Getting data from API
@@ -40,6 +41,7 @@ function displayEmployees(data) {
         `
     });
     gridContainer.innerHTML = cardHtml;
+    searchFilter();
 }
 
 /* ========================================
@@ -96,10 +98,18 @@ modalClose.addEventListener('click', (e) => {
 /* ========================================
 Search Function
 ======================================== */
-
-const searchField = document.getElementById('search');
-
-searchField.addEventListener('keyup', () => {
+function searchFilter() {
+    const searchField = document.getElementById('search');
     const searchInput = searchField.value.toLowerCase();
-    console.log(searchInput);
-});
+
+    searchField.addEventListener('keyup', () => {
+        for (let i = 0; i < card.length; i++) {
+            if (card.innerText.toLowerCase().includes(searchInput)) {
+                card[i].style.display = "";
+            } else {
+                card[i].style.disaply = 'none';
+            }
+        }
+    });
+
+}
