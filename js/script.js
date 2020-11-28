@@ -6,6 +6,7 @@ let employees = [];
 const apiUrl = 'https://randomuser.me/api/?results=12&nat=nz';
 const gridContainer = document.querySelector('.grid-container');
 const overlay = document.querySelector('.overlay');
+const modal = document.querySelector('.modal');
 const modalContainer = document.querySelector('.modal-content');
 const modalClose = document.querySelector('.modal-close');
 const card = document.getElementsByClassName('card');
@@ -103,7 +104,7 @@ Modal Navigation
 const prevArrow = document.querySelector('.previous-arrow');
 const nextArrow = document.querySelector('.next-arrow');
 
-overlay.addEventListener('click', (e) => {
+modal.addEventListener('click', (e) => {
     if (e.target.className === 'previous-arrow') {
         // Decrease index by 1
         console.log('previous');
