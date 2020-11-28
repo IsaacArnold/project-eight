@@ -97,6 +97,23 @@ modalClose.addEventListener('click', (e) => {
 });
 
 /* ========================================
+Modal Navigation
+======================================== */
+
+const prevArrow = document.querySelector('.previous-arrow');
+const nextArrow = document.querySelector('.next-arrow');
+
+overlay.addEventListener('click', (e) => {
+    if (e.target.className === 'previous-arrow') {
+        // Decrease index by 1
+        console.log('previous');
+    } else if (e.target.className === 'next-arrow') {
+        // Increase index by 1
+        console.log('next');
+    }
+});
+
+/* ========================================
 Search Function
 ======================================== */
 // Function idea borrowed from my project five which had inspo from from itsmeganlynn's GitHub repo: techdegree-project-5
