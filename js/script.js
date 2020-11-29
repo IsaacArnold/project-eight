@@ -60,7 +60,7 @@ function displayModal(index) {
 
     const modalHtml = `
         <img class='profile-img-modal' src='${picture.large}' alt='Image of ${name.first} ${name.last}'>
-        <div class='text-container'>
+        <div class='text-container' data-index='${index}'>
             <h2 class='name'>${name.first} ${name.last}</h2>
             <p class='email'>${email}</p>
             <p class='city'>${city}</p>
@@ -87,6 +87,15 @@ gridContainer.addEventListener('click', (e) => {
         const index = card.getAttribute('data-index');
 
         displayModal(index);
+
+        if (index !== 0) {
+            prevArrow.style.display = '';
+        }
+        if (index !== 11) {
+            nextArrow.style.display = '';
+        }
+        
+        console.log(index);
     }
 });
 
@@ -101,16 +110,30 @@ modalClose.addEventListener('click', (e) => {
 Modal Navigation
 ======================================== */
 
+
 const prevArrow = document.querySelector('.previous-arrow');
 const nextArrow = document.querySelector('.next-arrow');
 
 modal.addEventListener('click', (e) => {
+    const modalText = modal.querySelector('.text-container');
+    let modalIndex = parseInt(modalText.getAttribute('data-index'));
+    console.log(modalIndex);
     if (e.target.className === 'previous-arrow') {
-        // Decrease index by 1
-        console.log('previous');
+        modalIndex -= 1;
+        displayModal(modalIndex);
     } else if (e.target.className === 'next-arrow') {
-        // Increase index by 1
-        console.log('next');
+        modalIndex += 1;
+        displayModal(modalIndex);
+    }
+    if (modalIndex === 0) {
+        prevArrow.style.display = 'none';
+    } else {
+        prevArrow.style.display = '';
+    }
+    if (modalIndex === 11) {
+        nextArrow.style.display = 'none';
+    } else {
+        nextArrow.style.display = '';
     }
 });
 
