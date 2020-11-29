@@ -51,14 +51,19 @@ Placing information inside the modal
 ======================================== */
 
 function displayModal(index) {
+    let currentIndex = parseInt(index);
+    
     let {
         name, dob, phone, email, location: {city, street, state, postcode}, picture
     } = employees[index];
     let date = new Date(dob.date);
 
-
+    // If the current index does not equal the index then create the element, else leave it blank
+    const prevArrow = currentIndex !== 0 ? `<p class='previous-arrow'>&lt;</p>` : "";
+    const nextArrow = currentIndex !== 11 ? `<p class='next-arrow'>&gt;</p>` : "";
 
     const modalHtml = `
+        ${prevArrow + nextArrow}
         <img class='profile-img-modal' src='${picture.large}' alt='Image of ${name.first} ${name.last}'>
         <div class='text-container' data-index='${index}'>
             <h2 class='name'>${name.first} ${name.last}</h2>
@@ -73,6 +78,28 @@ function displayModal(index) {
 
     overlay.classList.remove('hidden');
     modalContainer.innerHTML = modalHtml;
+
+    // Creates variables for the arrows - variable name explains what they will do
+    const prevModal = document.querySelector('.previous-arrow');
+    const nextModal = document.querySelector('.next-arrow');
+    
+    // Adds listeners to the arrows themselves
+    if (prevArrow !== '') {
+        prevModal.addEventListener('click', () => {
+            // Decreases by 1
+            currentIndex--;
+            // Updates the open modal
+            displayModal(currentIndex);
+        });
+    }
+    if (nextArrow !== '') {
+        nextModal.addEventListener('click', () => {
+            // Increases by 1
+            currentIndex++;
+            // Updates the open modal
+            displayModal(currentIndex);
+        });
+    }
 }
 
 /* ========================================
@@ -86,16 +113,7 @@ gridContainer.addEventListener('click', (e) => {
         const card = e.target.closest('.card');
         const index = card.getAttribute('data-index');
 
-        displayModal(index);
-
-        if (index !== 0) {
-            prevArrow.style.display = '';
-        }
-        if (index !== 11) {
-            nextArrow.style.display = '';
-        }
-        
-        console.log(index);
+        displayModal(index);     
     }
 });
 
@@ -103,37 +121,6 @@ gridContainer.addEventListener('click', (e) => {
 modalClose.addEventListener('click', (e) => {
     if (e.target.className === 'modal-close') {
         overlay.classList.add('hidden');
-    }
-});
-
-/* ========================================
-Modal Navigation
-======================================== */
-
-
-const prevArrow = document.querySelector('.previous-arrow');
-const nextArrow = document.querySelector('.next-arrow');
-
-modal.addEventListener('click', (e) => {
-    const modalText = modal.querySelector('.text-container');
-    let modalIndex = parseInt(modalText.getAttribute('data-index'));
-    console.log(modalIndex);
-    if (e.target.className === 'previous-arrow') {
-        modalIndex -= 1;
-        displayModal(modalIndex);
-    } else if (e.target.className === 'next-arrow') {
-        modalIndex += 1;
-        displayModal(modalIndex);
-    }
-    if (modalIndex === 0) {
-        prevArrow.style.display = 'none';
-    } else {
-        prevArrow.style.display = '';
-    }
-    if (modalIndex === 11) {
-        nextArrow.style.display = 'none';
-    } else {
-        nextArrow.style.display = '';
     }
 });
 
