@@ -16,10 +16,15 @@ const searchField = document.querySelector('#search');
 Getting data from API
 ======================================== */
 
+const fetchedEmployees = [];
+
 fetch(apiUrl)
     .then(response => response.json())
     .then(res => res.results)
-    .then (data => displayEmployees(data))
+    .then (data => {
+        fetchedEmployees.push(...data);
+        displayEmployees(data);
+    })
     .catch(err => console.log(err));
 
 /* ========================================
@@ -51,6 +56,7 @@ Placing information inside the modal
 ======================================== */
 
 function displayModal(index) {
+
     let currentIndex = parseInt(index);
     
     let {
@@ -59,8 +65,12 @@ function displayModal(index) {
     let date = new Date(dob.date);
 
     // If the current index does not equal the index then create the element, else leave it blank
+    const currentCards = document.querySelectorAll('.card');
     const prevArrow = currentIndex !== 0 ? `<p class='previous-arrow'>&lt;</p>` : "";
-    const nextArrow = currentIndex !== 11 ? `<p class='next-arrow'>&gt;</p>` : "";
+    // const nextArrow = currentIndex !== 11 ? `<p class='next-arrow'>&gt;</p>` : "";
+
+    // This version of the nextArrow allows it to be more dynamic as the total index will change depending on the filtered search array
+    const nextArrow = currentIndex !== (currentCards.length -1) ? `<p class='next-arrow'>&gt;</p>` : "";
 
     const modalHtml = `
         ${prevArrow + nextArrow}
@@ -129,18 +139,29 @@ Search Function
 ======================================== */
 // Function idea borrowed from my project five which had inspo from from itsmeganlynn's GitHub repo: techdegree-project-5
 function searchFilter() {
-    const searchField = document.getElementById('search');
     
     searchField.addEventListener('keyup', () => {
         // Putting the searchInput variable inside the event listener allows it to be updated each time the keys are pressed
         const searchInput = searchField.value.toLowerCase();
-        for (let i = 0; i < card.length; i++) {
-            // Using .name allows the card info to be the content of the name class -> this is what is being compared to the searchInput
-            if (card[i].querySelector('.name').innerText.toLowerCase().includes(searchInput)) {
-                card[i].style.display = "";
-            } else {
-                card[i].style.display = 'none';
-            }
-        }
+
+        // Variable to store the new array of employees -> Returns an array of only names that match the searchInput
+        const updatedEmployees = fetchedEmployees.filter(card => {
+            // Creates the name to filter against the search input -> each time a keyup happens this variable gets updated
+            const employeeName = `${card.name.first} ${card.name.last}`;
+            // Returns the filtered result to the updatedEmployees array
+            return employeeName.toLowerCase().includes(searchInput);
+        });
+        
+        // for (let i = 0; i < card.length; i++) {
+        //     // Using .name allows the card info to be the content of the name class -> this is what is being compared to the searchInput
+        //     if (card[i].querySelector('.name').innerText.toLowerCase().includes(searchInput)) {
+        //         card[i].style.display = "";
+        //     } else {
+        //         card[i].style.display = 'none';
+        //     }
+        // }
+
+        // Injects the updated list of employees into the DOM
+        displayEmployees(updatedEmployees);
     });
 }
