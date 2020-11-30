@@ -67,8 +67,6 @@ function displayModal(index) {
     // If the current index does not equal the index then create the element, else leave it blank
     const currentCards = document.querySelectorAll('.card');
     const prevArrow = currentIndex !== 0 ? `<p class='previous-arrow'>&lt;</p>` : "";
-    // const nextArrow = currentIndex !== 11 ? `<p class='next-arrow'>&gt;</p>` : "";
-
     // This version of the nextArrow allows it to be more dynamic as the total index will change depending on the filtered search array
     const nextArrow = currentIndex !== (currentCards.length -1) ? `<p class='next-arrow'>&gt;</p>` : "";
 
@@ -152,15 +150,6 @@ function searchFilter() {
             return employeeName.toLowerCase().includes(searchInput);
         });
         
-        // for (let i = 0; i < card.length; i++) {
-        //     // Using .name allows the card info to be the content of the name class -> this is what is being compared to the searchInput
-        //     if (card[i].querySelector('.name').innerText.toLowerCase().includes(searchInput)) {
-        //         card[i].style.display = "";
-        //     } else {
-        //         card[i].style.display = 'none';
-        //     }
-        // }
-
         // Injects the updated list of employees into the DOM
         displayEmployees(updatedEmployees);
     });
